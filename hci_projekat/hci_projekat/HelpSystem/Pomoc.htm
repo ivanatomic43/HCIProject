@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+            color: #000a1a;
+            border-color: #808080;
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <header>
+        <h1 align="center">Pomoć prilikom korišćenja aplikacije</h1>
+    </header>
+
+    <nav>
+        <ol>
+            <li><a href="#C1">Navigacija kroz aplikaciju</a></li>
+            <li><a href="#C2">Prijava i registracija</a></li>
+            <li><a href="#C3">Pregled podataka</a></li>
+            <li><a href="#C4">Dodavanje novog spomenika</a></li>
+            <li><a href="#C5">Izmena postojećeg spomenika</a></li>
+            <li><a href="#C6">Brisanje spomenika/tipa/etikete</a></li>
+            <li><a href="#C7">Dodavanje spomenika na mapu</a></li>
+            <li><a href="#C8">Dodavanje novog tipa</a></li>
+            <li><a href="#C9">Dodavanje nove etikete</a></li>
+            <li><a href="#C10">Izmena postojećeg tipa</a></li>
+            <li><a href="#C11">Izmena postojeće etikete</a></li>
+            <li><a href="#C12">Filtriranje i pretraga</a></li>
+
+        </ol>
+    </nav>
+
+    <article>
+        <h1 id="C1" position="center">1. Navigacija kroz aplikaciju</h1>
+        <p align="justify">
+            Na samom početku korisniku se prikazuje prozor za prijavu na sistem prikazan na fotografiji ispod.
+            Popunjavanjem prikazane forme i klikom na dugme <i>Prijavi se</i>, korisniku, ukoliko je registrovan, se odobrava pristup i otvara se glavni prozor aplikacije.
+        </p>
+        <img src="logovanje.jpg" />
+        <p align="justify"> Centralni deo glavnog prozora zauzima mapa grada u kom se nalaze spomenici. U gornjem delu prozora se nalazi navigacioni bar sa opcijama koje aplikacija nudi korisniku: pregled spomenika, tipova i etiketa, dodavanje istih, pomoć pri korišćenju aplikacije, kao i dugme <i>Odjava</i> koje omogućava korisniku da se odjavi iz aplikacije. Leva strana prozora je rezervisana za prikaz svih spomenika </p>
+        <img src="pocetna.jpg"/>
+        <p align ="justify">
+            Aplikacija je zamišljena kao veb-aplikacija: jedan glavni prozor koji se prostire preko čitavog ekrana uz kombinaciju nekoliko modalnih dijaloga. Jasno i precizno definisani dugmiću u okviru aplikacije pomažu korisniku prilikom navigacije kroz istu, tako da je gotovo nemoguće pogrešiti.
+        </p>
+    </article>
+    <article>
+        <h1 id="C2" position="center">2. Prijava i registracija</h1>
+        <p align="justify">
+            Radi kontrolisanja prava pristupa aplikaciji, realizovana je prijava i registracija na sistem. Na samom početku, potrebno je da se korisnik prijavi na sistem koristeći svoje korisničko ime i lozinku. Ukoliko korisnik nije registrovan na sistem, klikom na link <i>Registruj se</i> koji se nalazi ispod forme za prijavu.
+            U svakom trenutku korisniku je omogućena i odjava sa sistema, a broj prijava na sistem je neograničen i korisnik je prijavljen sve dok samovoljno ne odluči da se odjavi.
+        </p>
+    <p>Nakon što je korisnik odlučio da se registuje i kliknuo link, otvara se novi prozor sa formom za registraciju koju je neophodno popuniti. Korisnik ostavlja svoje podatke i bira jedinstveno korisničko ime koje će korisititi prilikom svake naredne prijave na sistem.</p>
+        <img src="registracija.jpg" />
+        <p>Sva polja za unos su obavezna, a ograničenja prilikom odabira korisničkog imena i lozinke ne postoje,mogu se koristiti mala i velika slova, brojevi, znakovi interpunkcije, s tim da korisničko ime mora biti jedistveno.</p>
+        <p>
+            Nakon što je korisnik uneo sve potrebne podatke, klikom na dugme <i>Registruj se</i>, aplikacija dozvoljava pristup registrovanom korisniku. Jednom registrovan korisnik postaje doživotno registrovan i nije moguće poništenje procesa.
+        </p>
+    
+    
+    <article>
+        <h1 id="C3" position="center">3. Pregled podataka</h1>
+        <p>Prva opcija koja se nudi korisniku u navigacionom baru je pregled podataka koji obuhvata pregled spomenika, tipova i etiketa. Klikom na dugme <i>Pregled</i>, korisniku se otvara modalni dijalog koji u sebi sadrži sve podatke</p>
+        <img src="pregled.jpg" />
+        <p> Podaci su prikazani tabelarno, a navigacija kroz podatke je omogućena tab kontrolom. Prvi tab predstavljaju spomenici. Tabela sa spomenicima sadrži sve trenutne spomenike koji postoje u sistemu.</p>
+        <p>Klikom na određeni spomenik u tabeli, korisniku se iščitavaju podaci o tom spomeniku. Tabela u sebi sadrži samo neke od bitnijih atributa, dok iščitavanje spomenika prikazuje sve atribute jednog spomenika.</p>
+        <p>U donjem desnom uglu prozora za pregled podataka se nalaze dugmad za brisanje i izmenu entiteta kao i opcija pretrage i filtriranja u vrhu prozora.</p>
+    
+    </article>
+    
+    </article>
+    <article>
+        <h1 id="C4" position="center">4. Dodavanje novog spomenika</h1>
+        <p align="justify">
+            Klikom na dugme <i>Dodaj</i> na glavnom prozoru aplikacije, pojaviće se lista za odabir entiteta koji korisnik želi da doda.Klikom na <i>Spomenik</i> pojaviće dijalog sa formom za unos novog spomenika prikazan na fotografiji.Elementi forme:
+            <ol>
+                <li>Oznaka - Polje oznaka služi za unos jednistvene oznake spomenika, unos mora biti broj, dužina je neograničena, ovo polje je obavezno</li>
+                <li>Naziv - Korisnik treba da unese naziv spomenika, naziv se može sastojati iz slova i brojeva, ovo polje je obavezno</li>
+                <li>Opis - Ukratko opisati i dati dodatne informacije o spomeniku koja se unosi</li>
+                <li>Tip - Svaki spomenik poseduje samo jedan tip, korisnik može da odabere već postojeći tip iz padajućeg menija</li>
+                <li>Klima - Korisnik treba da izabere jednu od ponuđenih opcija</li>
+                <li>Ekološki ugrožen - Korisnik treba da označi da li je spomenik ekološki ugrožen ili ne </li>
+                <li>Stanište ugroženih vrsta - Korisnik treba da označi da li spomenik predstavlja dom ugroženih vrsta</li>
+                <li>Naseljen region- Korisnik treba označi da li je region u kome se nalazi spomenik naseljen ili ne</li>
+                <li>Turistički status - Bira se jedna od ponuđenih opcija iz padajućeg menija</li>
+                <li>Etiketa - Spomenik može posedovati jednu ili više etiketa. Etiketa se može odabrati iz ponuđene liste etiketa</li>
+                <li>Godišnji prihod - Ovo polje služi za unos prihoda spomenika na godišnjem nivou </li>
+                <li>Datum otkrivanja- Korisnik treba da odabere datum kada je spomenik otkriven</li>
+                <li>Ikonica - Klikom na dugme <i>Izaberi</i> korisnik bira ikonicu za svoj spomenik koja će kasnije poslužiti za prikaz spomenika na mapi. Ukoliko ikonica nije izabrana, preuzima se ikonica koja je dodeljena tipu spomenika.</li>
+            </ol>
+        
+        </p>
+        
+        <img src="dodavanjenove.jpg" float="left" />
+        <p>
+            Nakon što se unesu sve potrebne informacije, klikom na dugme <i>Dodaj</i>, korisnik potvruđuje unos nove manifestacije. Nova manifestacija će biti dodata u repozitorijum manifestacija i prikazana u tabeli na glavnom prozoru aplikacije. Ukoliko se korisnik predomislio i želi da otkaže dodavanje nove manifestacije može to učiniti klikom na dugme <i>Odustani</i>
+        </p>
+    </article>
+
+    <article>
+        <h1 id="C5">5. Izmena postojećeg spomenika</h1>
+        <p>
+            Ukoliko korisnik želi da izmeni neki od postojećih spomenika, to može učiniti klikom na dugme <i>Izmeni</i> koje se nalazi u sklopu prozora za pregled spomenika. Da bi izmena bila omogućena, potrebno je selektovati željeni spomenik iz tabele spomenika. <p/>
+        <img src="izmenaspomenik.jpg"/>
+        <p>Nakon što je korisnik selektovao spomenik i kliknuo dugme <i>Izmeni</i>, pojaviće se ista forma kao i za dodavanje novog spomenika, ovaj put sa odgovarajućim podacima. Svaki podatak može da se izmeni, a konačna izmena podataka se vrši klikom na dugme <i>Izmeni</i> koje se nalazi u sklopu date forme.
+        </p>
+    </article>
+
+    <article>
+        <h1 id="C6">6. Brisanje spomenika/tipa/etikete</h1>
+        <p>
+            Brisanje spomenika podrazumeva njegovo uklanjanje iz repozitorijuma spomenika.. Ukoliko korisnik želi da obriše spomenik, potrebno je da prvo selektuje željeni spomenik iz tabele a zatim da levim tasterom miša klikne na dugme <i>Obriši</i> koje se nalazi u sklopu prozora za pregled podataka u donjem desnom uglu. Postupak je isti i za brisanje tipa i etikete.
+        </p>
+    </article>
+
+    <article>
+        <h1 id="C7">7. Dodavanje spomenika na mapu</h1>
+        <p>
+            Dodavanje spomenika na mapu se vrši upotrebom drag&drop tehnike. Na glavnom prozoru aplikacije sa leve strane se nalazi lista postojećih spomenika zajedno sa njihovim ikonicama. Klikom na neku od ikonica i njenim prevlačenjem na mapu koja se nalazi sa desne strane, spomenik će biti dodat na mapu. Takođe, omogućeno je pomeranje ikonice spomenika po mapi.</p>
+        <p> Svaka ikonica uz sebe ima vezan tooltip tekst, kako bi korisniku bio omogućen pregled podataka o spomeniku koji se nalazi na mapi.
+        </p>
+        <img src="drag&drop.jpg" />
+    </article>
+
+    <article>
+        <h1 id="C8">8. Dodavanje novog tipa</h1>
+        <p>
+            Tip predstavlja entitet koji se pridružuje spomeniku prilikom dodavanja novog spomenika. Opisan je oznakom, nazivom, ikonicom i opisom.
+            Dodavanje novog tipa može izvršiti klikom na dugme <i>Dodaj</i> koje se nalazi u navigacionom baru glavnog prozora aplikacije. Iz padajuće liste, korisnik treba da klikne na <i>Tip</i>. Nakon toga se pojavljuje novi dijalog sa formom za dodavanje novog tipa koja je prikazana na fotografiji ispod. Elementi forme su:
+            <ol>
+                <li>Oznaka tipa - Predstavlja jednistvenu identifikaciju svakog tipa pojedinačno, može da bude sačinjena od i od brojeva i od slova</li>
+                <li>Naziv tipa - Polje za unos naziva tipa</li>
+                <li>Ikonica - Fotografija po kojoj se tip identifikuje, ukoliko ne postoji ikonica za spomenik, preuzima se ona koja je dodeljena tipu, klikom na dugme <i>Izaberi</i> korisnik bira ikonicu za tip</li>
+                <li>Opis tipa - Dodatne informacije o tipu koji korisnik unosi</li>
+
+            </ol>
+
+
+        </p>
+        <img src="tip.jpg" alt="Forma za dodavanje novog tipa" align="middle" />
+        <p>
+            Potvrda unosa novog tipa se vrši klikom na dugme <i>Dodaj</i>, a ukoliko korisnik želi da odustane od dodavanja novog tipa, to može učiniti klikom na dugme <i>Odustani</i>.
+            Novi dodati tip će se pojaviti u tabeli koja se nalazi u pregledu podataka i u padajućem meniju kod labele <i>Tip</i> koja se nalazi u sklopu forme za dodavanje novog spomenika.
+        </p>
+    </article>
+
+    <article>
+        <h1 id="C9">9. Dodavanje nove etikete</h1>
+
+        <p>
+            Spomenici mogu biti tagovani sa nijednom, jednom ili više etiketa. Etiketa se specifira preko oznake, boje i opisa etikete.
+            Dodavanje nove etikete se može izvršiti klikom na dugme <i>Dodaj</i> koje se nalazi u navigacionom baru glavnog prozora aplikacije. Iz padajuće liste, korisnik treba da klikne na <i>Etiketa</i>. Nakon toga se pojavljuje novi dijalog sa formom za dodavanje nove etikete koja je prikazana na fotografiji ispod. Elementi forme su:
+            <ol>
+                <li>Oznaka Etikete - Jedinstvena oznaka preko koje se etiketa identifikuje</li>
+                <li>Boja - Korisnik treba da odabere boju iz palete boja</li>
+                <li>Opis Etikete - Dodatne informacije o etiketi koju korisnik unosi</li>
+            </ol>
+
+        </p>
+        <img src="etiketa.jpg" alt="Forma za dodavanje nove etikete" align="middle" />
+        <p>
+            Potvrda unosa nove etikete se vrši klikom na dugme <i>Dodaj</i>, a ukoliko korisnik želi da odustane od dodavanja nove etikete, to može učiniti klikom na dugme <i>Odustani</i>.
+            Nova dodata etiketa će se pojaviti u tabeli koja se nalazi u pregledu podataka i listi etiketa kod labele <i>Etiketa</i> koja se nalazi u sklopu forme za dodavanje novog spomenika.
+        </p>
+    </article>
+
+    <article>
+        <h1 id="C10">10. Izmena postojećeg tipa</h1>
+        <p>
+            Ukoliko korisnik želi da izmeni neki od postojećih tipova, to može učiniti klikom na dugme <i>Izmeni</i> koje se nalazi u okviru pregleda podataka u tabu <i>Tipovi</i>. Da bi izmena tipa bila moguća, potrebno je da korisnik selektuje željeni tip iz tabele, a zatim klikne na dugme <i>Izmeni</i>. Pojaviće se forma za izmenu tipa koja je ista kao i za dodavanje novog tipa, ali ovog puta sa odgovarajućim podacima.
+        </p>
+        <img src="tipizmena.jpg" />
+        <p>
+            Korisniku je omogućena izmena svakog podatka. Potvrda izmene se vrši klikom na dugme <i>Izmeni</i> koje se nalazi u okviru date forme. Ukoliko se korisnik predomislio i ne želi da izvrši izmenu tipa, prekid rada može izvršiti klikom na dugme <i>Odustani</i>.
+        </p>
+    </article>
+
+    <article>
+        <h1 id="C11">11. Izmena postojeće etikete</h1>
+        <p>
+            Ukoliko korisnik želi da izmeni neku od postojećih etiketa, to može učiniti klikom na dugme <i>Izmeni</i> koje se nalazi u okviru pregleda podataka u taba <i>Etikete</i>. Da bi izmena etikete bila moguća, potrebno je da korisnik selektuje željenu etiketu iz tabele, a zatim klikne na dugme <i>Izmeni</i>. Pojaviće se forma za izmenu etikete koja je ista kao i za dodavanje nove etikete, ali ovog puta sa odgovarajućim podacima.
+        </p>
+        <img src="etiketaizmena.jpg" />
+        <p>
+            Korisniku je omogućena izmena svakog podatka. Potvrda izmene se vrši klikom na dugme <i>Izmeni</i> koje se nalazi u okviru date forme. Ukoliko se korisnik predomislio i ne želi da izvrši izmenu etikete, prekid rada može izvršiti klikom na dugme <i>Odustani</i>.
+        </p>
+
+    </article>
+    <article>
+        <h1 id="C12">12. Filtriranje i pretraga</h1>
+        <p>
+            Korisniku je u okviru aplikacije omogućeno filtriranje i pretraga podataka. Filtriranje spomenika se može vršiti uz pomoć tri parametra: oznake spomenika, naziva spomenika i tipa spomenika.
+
+        </p>
+        
+        <p> Filtriranje i pretraga se nalaze u okviru prozora pregleda podataka. Kako bi korisnik izvršio filtraciju potrebno je da odabere filter. Nakon toga pojavljuje se odgovarajuća forma za unos podatka po kom će se vršiti filtracija.</p>
+        <p> Prilikom pretrage podataka, korisniku je dozvoljeno da unese najmanje jedan atribut po kom će se vršiti pretraga. Klikom na dugme <i>Pretraga</i> koje se nalazi u okviru pregleda entiteta, pojaviće se novi dijalog za unos parametara pretrage. Nakon unetih parametara klikom na dugme <i>Pretraži</i> korisniku će biti prikazani rezultati pretrage.</p>
+
+    </article>
+</body>
+</html>

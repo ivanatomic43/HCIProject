@@ -1,0 +1,304 @@
+﻿<Window x:Class="hci_projekat.Prozori.PregledSpomenika"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hci_projekat.Prozori"
+        xmlns:list="clr-namespace:hci_projekat.Klase"
+         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Pregled" Height="470" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <DockPanel Width="800">
+        <TabControl  HorizontalAlignment="Center" Height="430" Width="797" VerticalAlignment="Bottom" Margin="0,0,0,-0.2" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Spomenici" >
+                <DockPanel Height="400" Width="800">
+
+
+                    <Grid DockPanel.Dock="Left" Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Top" Height="400" Width="180">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,30" FontWeight="Medium" FontSize="13" Text="Ikonica" />
+                        <TextBlock Grid.Column="1" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,30" FontWeight="Medium" FontSize="13" Text="Oznaka"></TextBlock>
+                        <TextBlock Grid.Column="2" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,30" FontWeight="Medium" FontSize="13" Text="Naziv"></TextBlock>
+                        <ListView Name="listViewMapa1" Background="AliceBlue" Height="280" Width="160" HorizontalAlignment="Center"  ItemsSource="{Binding spomenici}"  Grid.ColumnSpan="3"  Grid.RowSpan="2" SelectionChanged="listViewMapa1_SelectionChanged">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel Height="35">
+
+                                        <Label >
+
+                                            <Image Source="{Binding spomenikpath}" Name="spomenikPregled"  Height="25" Width="25"></Image>
+                                        </Label>
+
+                                        <Label Height="33" VerticalAlignment="Center" >
+                                            <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15" HorizontalAlignment="Center" FontWeight="Medium" Text="{Binding oznakaSpomenik}"></TextBlock>
+                                        </Label>
+
+                                        <Label Height="33" VerticalAlignment="Center">
+                                            <TextBlock VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" FontSize="15" FontWeight="Medium" Text="{Binding nazivSpomenik}"></TextBlock>
+
+                                        </Label>
+
+                                    </WrapPanel>
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+                    </Grid>
+
+
+                    <Grid Background="White" DockPanel.Dock="Right" Width="615" Margin="0,0,0,61">
+                        <ContentPresenter Content="{Binding ElementName=listViewMapa1, Path=SelectedItem}" >
+                            <ContentPresenter.Resources>
+                                <DataTemplate DataType="{x:Type list:Spomenik}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="92.5" />
+                                            <ColumnDefinition Width="112.5"/>
+                                            <ColumnDefinition Width="92.5" />
+                                            <ColumnDefinition Width="119.5"/>
+                                                                    
+                                            <ColumnDefinition Width="112.5"/>
+                                            <ColumnDefinition Width="112.5" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="55"/>
+                                            <RowDefinition Height="60" />
+                                            <RowDefinition Height="60"/>
+                                            <RowDefinition Height="60" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Oznaka:" FontSize="13" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        <TextBox Grid.Row="0" BorderThickness="4" Grid.Column="1" HorizontalAlignment="Left" Text="{Binding oznakaSpomenik}" Height="25" Width="100"></TextBox>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="1" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Naziv:</TextBlock>
+                                        <TextBox VerticalAlignment="Center" BorderThickness="5" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="25" Width="100" BorderBrush="Black" Text="{Binding nazivSpomenik}" />
+
+                                        <TextBlock FontWeight="Medium"  Grid.Column="0" Grid.Row="2" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Opis:</TextBlock>
+                                        <TextBox Grid.Column="1" BorderThickness="5" Grid.Row="2" HorizontalAlignment="Left"  Height="50" Width="100" BorderBrush="Black" Text="{Binding opisSpomenik}" />
+
+                                        <TextBlock FontWeight="Medium"  Grid.Column="0" Grid.Row="3" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Ekološki "/><LineBreak/><Run Text="ugrožen:"/></TextBlock>
+                                        <CheckBox FontWeight="Medium" IsChecked="{Binding ekoloski, Mode=TwoWay}" BorderThickness="5" Content="Da" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="checkBox1"/>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="4" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Stanište"/><LineBreak/><Run Text="ugroženih vrsta:"/></TextBlock>
+                                        <CheckBox BorderThickness="5" IsChecked="{Binding ElementName=pregled, Path=IsCheckBoxChecked}" FontWeight="Medium" Grid.Row="4" Grid.Column="1" Content="Da" VerticalAlignment="Center" HorizontalAlignment="Center" Name="checkBox3" IsEnabled="True" Height="20" />
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="5" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Naseljen"/><LineBreak/><Run Text="region:"/></TextBlock>
+                                        <CheckBox IsChecked="{Binding naseljenRegion}" FontWeight="Medium" BorderThickness="5" Grid.Row="5" Grid.Column="1" Content="Da" VerticalAlignment="Center" HorizontalAlignment="Center" Name="checkBox4" IsEnabled="True" Height="20"  />
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="0" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Tip:</TextBlock>
+                                        <TextBlock FontWeight="Medium" Grid.Column="3" Grid.Row="0" FontSize="14" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=tipSpomenik}"></TextBlock>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="1" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Klima:</TextBlock>
+                                        <TextBlock FontWeight="Medium" Grid.Column="3" Grid.Row="1" FontSize="14" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=klima}"></TextBlock>
+
+                                        <TextBlock FontWeight="Medium"  Grid.Column="2" Grid.Row="2" FontSize="13" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Turistički"/><LineBreak/><Run Text="status:"></Run></TextBlock>
+                                        <TextBlock FontWeight="Medium" FontSize="14" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="3" Text="{Binding Path=turistickiStatus}"></TextBlock>
+
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="3" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Godišnji"/><LineBreak/><Run Text="prihod:"></Run></TextBlock>
+                                        <TextBox Grid.Column="3" BorderThickness="5" Grid.Row="3" Width="100" Name="textBoxPrihod" BorderBrush="Black" Height="25" Text="{Binding Path=godisnjiPrihod}"/>
+
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="4" Grid.Row="0" FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="64">Ikonica:</TextBlock>
+                                        <Border BorderBrush="LightSteelBlue" Grid.Row="0" Grid.Column="4" BorderThickness="2" Width="112" Height="112" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="border1" >
+                                            <Image Name="slikaSpomenika" Source="{Binding spomenikpath}" Height="110" Width="110"/>
+                                        </Border>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="4" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Etiketa:</TextBlock>
+
+                                        <ListBox BorderThickness="3" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" Name="listViewEtiketeP" Width="100" SelectionMode="Single" ItemsSource="{Binding Path=etikete}" Margin="9.6,10.4,10.4,12.2">
+                                           
+                                        </ListBox>
+
+                                        <TextBlock FontWeight="Medium"  Grid.Column="4" Grid.Row="3" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"  Width="74"><Run Text="Datum:"/><LineBreak/><Run Text="otkrivanja:"></Run></TextBlock>
+                                        <DatePicker BorderThickness="3" Name="date" Grid.Column="4" Grid.Row="4" Width="110" HorizontalAlignment="Center" BorderBrush="LightSteelBlue" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2" SelectedDate="{Binding datumOtkrivanja}" >
+
+                                        </DatePicker>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+                    </Grid>
+
+                    <Grid DockPanel.Dock="Bottom"  Height="61" VerticalAlignment="Bottom"  Background="LightBlue" Margin="0,0,-610,0">
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Margin="370,7,135,8" Click="Izmena">Izmeni</Button>
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100"  Margin="480,7,10,8" Click="Button_Click">Obriši</Button>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Tipovi" HorizontalAlignment="Left" Margin="-0.2,0,0,0" Width="52">
+                <DockPanel Height="400" Width="800">
+
+
+                    <Grid Background="LightBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Top" Height="400" Width="180">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top"  FontWeight="Medium" FontSize="13" Margin="10,30" Text="Oznaka"></TextBlock>
+                        <TextBlock Grid.Column="1" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top"  FontWeight="Medium" FontSize="13" Text="Naziv" Margin="10,30"></TextBlock>
+                        <ListView Grid.ColumnSpan="2" Name="listViewMapa2" Background="AliceBlue" Height="280" Width="160" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding tipovi}" >
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel Height="35">
+
+                                      
+
+                                        <Label Height="33" VerticalAlignment="Center" >
+                                            <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15" HorizontalAlignment="Center" FontWeight="Medium" Text="{Binding oznakaTipa}"></TextBlock>
+                                        </Label>
+
+                                        <Label Height="33" VerticalAlignment="Center">
+                                            <TextBlock VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" FontSize="15" FontWeight="Medium" Text="{Binding nazivTipa}"></TextBlock>
+
+                                        </Label>
+
+                                    </WrapPanel>
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+                    </Grid>
+
+
+                    <Grid Background="White" DockPanel.Dock="Right" Width="615" Margin="0,0,0,61" >
+                        <ContentPresenter Content="{Binding ElementName=listViewMapa2, Path=SelectedItem}"  >
+                            <ContentPresenter.Resources >
+                                <DataTemplate DataType="{x:Type list:Tip}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="207"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="208"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="0" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Oznaka Tipa:</TextBlock>
+                                        <TextBox  Name="textBoxOznakaTipaP" BorderThickness="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" BorderBrush="Black" VerticalAlignment="Center" Width="100" Height="25" Text="{Binding oznakaTipa}"></TextBox>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="1" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Naziv Tipa:</TextBlock>
+                                        <TextBox Name="textBoxNazivTipaP" BorderThickness="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" BorderBrush="Black" VerticalAlignment="Center" Width="100" Height="25" Text="{Binding nazivTipa}"/>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="0" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Ikonica:</TextBlock>
+                                            <Border BorderThickness="2" Grid.Column="3" Grid.Row="0" BorderBrush="LightSteelBlue" Width="82" Height="82" Name="imageBorder">
+                                                <Image Grid.Column="3" Grid.Row="0" Width="80" Height="80" Name="image1" Source="{Binding path}"></Image>
+                                            </Border>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="1" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Opis Tipa:</TextBlock>
+                                        <TextBox Name="textBoxOpisTipaP" BorderThickness="5" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="70" BorderBrush="Black" Text="{Binding opisTipa}"/>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ContentPresenter.Resources> 
+                        </ContentPresenter>
+                    </Grid>
+
+                    <Grid DockPanel.Dock="Bottom"  Height="60" VerticalAlignment="Bottom" Background="LightBlue" Margin="0,0,-610,0">
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Margin="370,7,135,8">Izmeni</Button>
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Margin="480,7,10,8" Click="Button_Click">Obriši</Button>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Etikete" Margin="-0.2,0,0.2,0">
+                <DockPanel Height="400" Width="800">
+
+
+                    <Grid Background="LightBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Top" Height="400" Width="180">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,30" FontWeight="Medium" FontSize="13" Text="Oznaka"></TextBlock>
+
+                        <ListView Name="listViewMapa3" Background="AliceBlue" Height="280" Width="160" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding etikete}" Grid.ColumnSpan="3">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel Height="35">
+
+                                        
+
+                                        <Label Height="33" VerticalAlignment="Center" >
+                                            <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15" HorizontalAlignment="Center" FontWeight="Medium" Text="{Binding Path=oznakaEtikete}"></TextBlock>
+                                        </Label>
+
+                                       
+
+                                    </WrapPanel>
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+                    </Grid>
+
+
+                    <Grid Background="White" DockPanel.Dock="Right" Width="615" Margin="0,0,0,61">
+                        <ContentPresenter Content="{Binding ElementName=listViewMapa3, Path=SelectedItem}">
+                            <ContentPresenter.Resources>
+                                <DataTemplate DataType="{x:Type list:Etiketa}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+
+                        <TextBlock FontWeight="Medium" Grid.Column="1" Grid.Row="0" FontSize="13" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Oznaka Etikete:</TextBlock>
+                        <TextBox Name="textBox1P" BorderThickness="3" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" BorderBrush="Black" VerticalAlignment="Center" Width="100" Height="25" Text="{Binding Path= oznakaEtikete}"></TextBox>
+
+                                        <TextBlock FontWeight="Medium" Grid.Column="1" Grid.Row="1" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Boja:</TextBlock>
+                                        <xctk:ColorPicker SelectedColor="{Binding Path=boja}" Name="Clr" DisplayColorAndName="True" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="2" BorderBrush="LightBlue" VerticalAlignment="Center" Width="100" Height="25"></xctk:ColorPicker>
+                                        
+                                        <TextBlock FontWeight="Medium" Grid.Column="1" Grid.Row="2" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Opis:</TextBlock>
+                                        <TextBox Grid.Column="2" BorderThickness="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="60" BorderBrush="Black" Name="textBox2P" Text="{Binding Path=opisEtikete}"/>
+                                    </Grid>
+                                 </DataTemplate>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+                    </Grid>
+
+                    <Grid DockPanel.Dock="Bottom"  Height="61" VerticalAlignment="Bottom" Margin="0,0,-610,0" Background="LightBlue">
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Margin="370,7,135,8" Click="izmena_etikete">Izmeni</Button>
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Margin="480,7,10,8" Click="Button_Click">Obriši</Button>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+
+        </TabControl>
+
+    </DockPanel>
+</Window>

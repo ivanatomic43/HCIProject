@@ -1,0 +1,153 @@
+﻿<Window x:Class="hci_projekat.Prozori.DodajSpomenik"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hci_projekat.Prozori"
+        xmlns:val="clr-namespace:hci_projekat"
+        mc:Ignorable="d"
+         ResizeMode="NoResize"
+        Title="Unos novog spomenika" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
+    <Grid Background="White" Width="800" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="120"/>
+
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="155"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="0"  FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Oznaka:</TextBlock>
+        <TextBox Grid.Column="1" ToolTip="Polje je obavezno za unos!" HorizontalAlignment="Left" BorderThickness="4" Grid.Row="0" Height="25" Width="130" Name="textBoxOznakaSpomenik" BorderBrush="Black" Text="{Binding Path=Oznaka, UpdateSourceTrigger=PropertyChanged}">
+            
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+
+        <TextBlock FontWeight="Medium" Grid.Column="0" Grid.Row="1" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Naziv:</TextBlock>
+        <TextBox VerticalAlignment="Center" ToolTip="Polje je obavezno za unos!" BorderThickness="5" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="25" Width="130" Name="textBoxImeSpomenik" BorderBrush="Black" TextChanged="textBoxImeSpomenik_TextChanged" >
+            <TextBox.Text>
+                <Binding Path="Ime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:CheckIfEmptyRule ValidationStep="RawProposedValue"/>
+                        <val:CheckStringRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBlock FontWeight="Medium"  Grid.Column="0" Grid.Row="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Opis:</TextBlock>
+        <TextBox Grid.Column="1" ToolTip="Polje je obavezno za unos!" BorderThickness="5" Grid.Row="2" HorizontalAlignment="Left" Name="textBoxOpisSpomenik" Height="60" Width="130" BorderBrush="Black">
+            <TextBox.Text>
+                <Binding Path="Opis" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:CheckIfEmptyRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBlock ToolTip="Označiti da li je spomenik ekološki ugrožen" FontWeight="Medium"  Grid.Column="0" Grid.Row="3" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Ekološki "/><LineBreak/><Run Text="ugrožen:"/></TextBlock>
+        <CheckBox IsChecked="{Binding Path=Ekoloski}" FontWeight="Medium" BorderThickness="5" Content="Da" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="checkBox1"/>
+
+        <TextBlock ToolTip="Označiti da li spomenik predstavlja stanište ugroženih vrsta" FontWeight="Medium" Grid.Column="0" Grid.Row="4" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Stanište"/><LineBreak/><Run Text="ugroženih vrsta:"/></TextBlock>
+        <CheckBox IsChecked="{Binding Path=Staniste}" BorderThickness="5" FontWeight="Medium" Grid.Row="4" Grid.Column="1" Content="Da" VerticalAlignment="Center" HorizontalAlignment="Center" Name="checkBox3" IsEnabled="True" Height="20" Margin="48,10" />
+
+        <TextBlock ToolTip="Označiti da li se spomenik nalazi u naseljenom regionu" FontWeight="Medium" Grid.Column="0" Grid.Row="5" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Naseljen"/><LineBreak/><Run Text="region:"/></TextBlock>
+        <CheckBox IsChecked="{Binding Path=Region}" FontWeight="Medium" BorderThickness="5" Grid.Row="5" Grid.Column="1" Content="Da" VerticalAlignment="Center" HorizontalAlignment="Center" Name="checkBox4" IsEnabled="True" Height="20" Margin="48,10" />
+
+
+        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="0" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Tip:</TextBlock>
+        <ComboBox SelectedIndex="0" ToolTip="Polje je obavezno za unos!" Text="{Binding Path=Tip, UpdateSourceTrigger=PropertyChanged}"  BorderThickness="5" ItemsSource="{Binding Path=tipovi}" Grid.Row="0" HorizontalAlignment="Center" Width="110" Height="22" Grid.Column="3" Name="comboBoxTipD" BorderBrush="Black" SelectionChanged="comboBoxTip_SelectionChanged">
+           
+        </ComboBox>
+
+
+        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="1" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Klima:</TextBlock>
+        <ComboBox Grid.Row="1" ToolTip="Polje je obavezno za unos!" SelectedIndex="{Binding Path=Klima, UpdateSourceTrigger=PropertyChanged}" Width="110" IsEditable="False" BorderBrush="LightBlue" BorderThickness="5" Grid.Column="3" Name="comboBoxKlima" Height="22">
+            <ComboBoxItem Content="Polarna"/>
+            <ComboBoxItem Content="Kontinentalna"/>
+            <ComboBoxItem Content="Umereno-kontinentalna"/>
+            <ComboBoxItem Content="Pustinjska"/>
+            <ComboBoxItem Content="Suptropska"/>
+            <ComboBoxItem Content="Tropska"/>
+
+        </ComboBox>
+
+        <TextBlock FontWeight="Medium"  Grid.Column="2" Grid.Row="2" FontSize="15" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Turistički"/><LineBreak/><Run Text="status:"></Run></TextBlock>
+        <ComboBox Grid.Row="2" ToolTip="Polje je obavezno za unos!" SelectedItem="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Center" BorderBrush="LightBlue" IsEditable="False" Name="comboBoxStatus" Grid.Column="3" Height="22">
+            <ComboBoxItem Content="Eksploatisan"/>
+            <ComboBoxItem Content="Dostupan"/>
+            <ComboBoxItem Content="Nedostupan"/>
+           
+            
+        </ComboBox>
+
+
+        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="3" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Godišnji"/><LineBreak/><Run Text="prihod:"></Run></TextBlock>
+        <TextBox Grid.Column="3" ToolTip="Polje je obavezno za unos!" BorderThickness="5" Grid.Row="3" Width="100" Name="textBoxPrihod" BorderBrush="Black" Height="25">
+            <TextBox.Text>
+                <Binding Path="Prihod" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:CheckIfEmptyRule ValidationStep="RawProposedValue"/>
+                        <val:CheckIfOnlyNumbersRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+           
+        </TextBox>
+
+        <TextBlock FontWeight="Medium"  Grid.Column="4" Grid.Row="4" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,12.6,73.2,12.2" Width="74"><Run Text="Datum:"/><LineBreak/><Run Text="otkrivanja:"></Run></TextBlock>
+        <DatePicker ToolTip="Polje je obavezno za unos!" SelectedDateChanged="Datum" BorderThickness="3" Name="date" Grid.Column="4" Grid.Row="4" Width="110" HorizontalAlignment="Center" BorderBrush="LightSteelBlue" VerticalAlignment="Center" Height="30" Grid.ColumnSpan="2" Margin="100.6,19.6,99,15.2">
+            
+        </DatePicker>
+
+        <TextBlock FontWeight="Medium" Grid.Column="4" Grid.Row="0" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,11,83.2,13.8" Width="64">Ikonica:</TextBlock>
+        <Border BorderBrush="LightSteelBlue" Grid.Row="0" Grid.Column="4" BorderThickness="2" Width="112" Height="112" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="border1" >
+            <Image ToolTip="Ukoliko korisnik ne izabere ikonicu, preuzima se ikonica tipa" Name="slikaSpomenika"  Height="110" Width="110" Source="{Binding Path=ikonicaR}"/>
+        </Border>
+        <Button FontSize="15" FontWeight="Medium" Click="Button_Click_4" Content="Izaberi" BorderBrush="Black" BorderThickness="2.5" Grid.Row="2" Grid.Column="4" Height="30" Width="110" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="80.6,0,79,44" Grid.RowSpan="2"/>
+
+        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="4" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Etikete:</TextBlock>
+
+        <ListBox ToolTip="Označavanje etiketa nije obavezno" BorderThickness="3" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" Name="listViewEtiketeD" Width="100" SelectionMode="Single" ItemsSource="{Binding etiketee}" SelectedValue="{Binding Path= etikete, Mode=OneWayToSource}" Margin="9.6,10.4,10.4,12.2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBoxItem IsSelected="{Binding IsChecked}">
+                        <CheckBox Name="etik" IsChecked="{Binding IsChecked}" Content="{Binding Path=Item}"></CheckBox>
+                    </ListBoxItem>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button FontSize="15" FontWeight="Medium" Grid.Column="5" Grid.Row="6" BorderThickness="2.5" BorderBrush="Black" Cursor="Hand" Height="30" Width="100" Click="dodajspomenik" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="24.8,10.2,30.2,39.8">Dodaj</Button>
+        <Button FontSize="15" FontWeight="Medium" Grid.Column="4" Grid.Row="6" BorderBrush="Black" BorderThickness="2.5" Cursor="Hand" Height="30" Width="100" Click="Button_Click_3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,10.2,27.2,39.8">Odustani</Button>
+
+
+    </Grid>
+</Window>

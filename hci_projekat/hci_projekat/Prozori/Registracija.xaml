@@ -1,0 +1,46 @@
+﻿<Window x:Class="hci_projekat.Prozori.Registracija"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hci_projekat.Prozori"
+        mc:Ignorable="d"
+        Title="Registracija" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="mapa.png" Opacity="0.2"></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+
+
+            <ColumnDefinition/>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="2" Grid.Row="0" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Ime i prezime:"></TextBlock>
+        <TextBox Name="imeprezime" ToolTip="Polje je obavezno za unos!" Grid.Column="2" BorderBrush="LightBlue" BorderThickness="3"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="150" Margin="54.8,52,55.2,58" Grid.RowSpan="2"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="1" Text="E-mail:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="101.8,17.6,102.2,28.8"></TextBlock>
+        <TextBox Name="email" ToolTip="Polje je obavezno za unos!" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="150" BorderBrush="LightBlue" BorderThickness="3" Margin="54.8,46.6,55.2,63.4" Grid.RowSpan="2"></TextBox>
+
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="Korisničko ime:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="72.8,20.2,63.2,26.2"></TextBlock>
+        <TextBox Name="korisnickoime" ToolTip="Polje je obavezno za unos!" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="150" BorderBrush="LightBlue" BorderThickness="3" Margin="54.8,49.2,55.2,60.8" Grid.RowSpan="2"></TextBox>
+
+        <TextBlock Grid.Column="2" Grid.Row="3" Text="Lozinka:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="101.8,22.8,92.2,23.6"></TextBlock>
+        <TextBox Name="lozinka" ToolTip="Polje je obavezno za unos!" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="150" BorderBrush="LightBlue" BorderThickness="3" Margin="54.8,51.8,55.2,59" Grid.RowSpan="2"></TextBox>
+        
+        <Button Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic" FontFamily="Bookman Header" FontSize="20" FontWeight="DemiBold" Width="124"  Height="32" Margin="72.8,48.4,63.2,58" Grid.RowSpan="2" Click="Button_Click1">Registruj se</Button>
+
+    </Grid>
+</Window>

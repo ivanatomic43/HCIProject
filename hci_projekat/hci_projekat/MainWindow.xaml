@@ -1,0 +1,168 @@
+﻿<Window x:Class="hci_projekat.MainWindow"
+        xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:hci_projekat.Klase"
+        xmlns:l="clr-namespace:hci_projekat.HelpSystem"
+         xmlns:cmd ="clr-namespace:hci_projekat"
+        mc:Ignorable="d"
+        Title="Mapa Spomenika" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="987" Width="1540">
+    <Window.Resources>
+        <BitmapImage x:Key="FolderOpen" UriSource="/hci_projekat;component/foldero.png"/>
+        <BitmapImage x:Key="FolderClosed" UriSource="/hci_projekat;component/folder.png"/>
+        <Style x:Key="SmallIcon" TargetType="Image">
+            <Setter Property="MaxWidth" Value="16"/>
+            <Setter Property="MaxHeight" Value="16"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="cmd:Mnemonic.Spomenik" CanExecute="Spomenik_CanExecute" Executed="Spomenik_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:Mnemonic.Etiketa" CanExecute="Etiketa_CanExecute" Executed="Etiketa_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:Mnemonic.Tip" CanExecute="Tip_CanExecute" Executed="Tip_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:Mnemonic.Pregled" CanExecute="Pregled_CanExecute" Executed="Pregled_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:Mnemonic.Pomoc" CanExecute="Pomoc_CanExecute" Executed="Pomoc_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    <DockPanel Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <Grid DockPanel.Dock="Bottom" Background="#2aa2a2" HorizontalAlignment="Stretch" Margin="215,0,198.6,0" Height="135" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+        </Grid>
+
+
+        <Grid DockPanel.Dock="Left"  Background="#2aa2a2" Width="219" Margin="0,72,0,-135.4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="595" Width="190">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Medium" FontSize="13" Margin="10" Text="Ikonica"/>
+                <TextBlock Grid.Column="1" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontWeight="Medium" FontSize="13" Text="Oznaka"></TextBlock>
+                <TextBlock Grid.Column="2" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontWeight="Medium" FontSize="13" Text="Naziv"></TextBlock>
+                <ListView Name="listViewMapa" Height="565" Width="190" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding spomenici}" Margin="0,30,0.4,0" RenderTransformOrigin="0.728,0.493" Grid.ColumnSpan="3" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel Height="50">
+
+                                <Label >
+
+                                    <Image Source="{Binding spomenikpath}"  Height="50" Width="50"></Image>
+                                </Label>
+                                <TextBlock Text="         "></TextBlock>
+                                <Label Height="50" VerticalAlignment="Center" >
+                                    <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15" HorizontalAlignment="Center" FontWeight="Medium" Text="{Binding Path=oznakaSpomenik}"></TextBlock>
+                                </Label>
+                                <TextBlock Text="              "></TextBlock>
+                                <Label Height="50" VerticalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" FontSize="15" FontWeight="Medium" Text="{Binding Path=nazivSpomenik}"></TextBlock>
+
+                                </Label>
+
+                            </WrapPanel>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </Grid>
+
+
+
+
+        </Grid>
+
+
+
+
+        <StackPanel Height="72" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#2aa2a2" Margin="-219.2,0,-0.4,0">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="64" Margin="0,0.4,-5.6,0" Background="#2aa2a2" Width="1540">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="220"/>
+                    <ColumnDefinition MaxWidth="275"/>
+                    <ColumnDefinition MaxWidth="275"/>
+                    
+                    <ColumnDefinition MaxWidth="275"/>
+                    <ColumnDefinition MaxWidth="275"/>
+                    <ColumnDefinition MaxWidth="220"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+
+                <Button Background="LightGray" ToolTip="Tabelarni prikaz svih entiteta" Command="cmd:Mnemonic.Pregled" FontWeight="Medium" Grid.Row="0" FontSize="20" BorderBrush="Black" BorderThickness="2" Height="56" Width="275" HorizontalAlignment="Center" Grid.Column="1" Click="MenuItem_Click_3" >
+
+
+                    Pregled
+                </Button>
+                <xctk:DropDownButton Width="275" Grid.Column="2" ToolTip="Dodavanje novih entiteta u sistem" FontSize="20" Content="Dodaj" BorderBrush="Black" BorderThickness="2" Height="56" FontWeight="Medium" HorizontalAlignment="Center" Click="DropDownButton_Click">
+                    <xctk:DropDownButton.DropDownContent>
+                        <StackPanel Width="220">
+                            <MenuItem Header="Spomenik" ToolTip="Prečica: Ctrl + S"  Click="Button_Click_2" />
+                            <MenuItem Header="Tip" ToolTip="Prečica: Ctrl + T"  Click="Button_Click"></MenuItem>
+                            <MenuItem Header="Etiketa" ToolTip="Prečica: Ctrl + E"   Click="MenuItem_Click_2"></MenuItem>
+                        </StackPanel>
+                    </xctk:DropDownButton.DropDownContent>
+
+
+
+
+                </xctk:DropDownButton>
+
+
+
+
+
+
+                <Button Content="Pomoć" ToolTip="Korisničko uputstvo" Command="cmd:Mnemonic.Pomoc" l:HelpProvider.HelpKey="Pomoc" FontWeight="Medium" Grid.Row="0" VerticalAlignment="Center" Grid.Column="3" BorderBrush="Black" BorderThickness="2" Width="275" HorizontalAlignment="Center" FontSize="20" Height="56" Click="Button_Click_1"></Button>
+               
+                <Button FontWeight="Medium" Click="odjava" FontSize="20" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" BorderBrush="Black" Width="275" Height="56" Grid.ColumnSpan="2" Margin="0,0,218,-0.8">Odjava</Button>
+            </Grid>
+
+
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Right" Width="209" Background="#2aa2a2" Margin="0,0,0,-135.4">
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </StackPanel>
+
+        <Canvas DockPanel.Dock="Top" Name="canvas"  VerticalAlignment="Center" Height="650" Width="1102" HorizontalAlignment="Center" AllowDrop="True" Margin="1.8,26" DragEnter="ListView_DragEnter" Drop="ListView_Drop" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove" MouseLeftButtonUp="canvas_MouseLeftButtonUp"   >
+            <Canvas.Background>
+                <ImageBrush ImageSource="Prozori/mapa.png"></ImageBrush>
+            </Canvas.Background>
+        </Canvas>
+
+
+
+    </DockPanel>
+</Window>

@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8812D826-2944-4BBB-845C-89FEB46FC1F2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>hci_projekat</RootNamespace>
+    <AssemblyName>hci_projekat</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Samples.SampleData">
+      <HintPath>..\..\..\Downloads\wpftoolkit\sourceCode\sourceCode\Main\Source\ExtendedWPFToolkitSolution\Libs\Xceed.Wpf.Samples.SampleData.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\..\Downloads\IvanaTomichci_projekat_6B3U\hci_projekat_6B3U\hci_projekat_6B3U\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="HelpSystem\HelpProvider.cs" />
+    <Compile Include="HelpSystem\HelpViewer.xaml.cs">
+      <DependentUpon>HelpViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpSystem\JavaScriptControlHelper.cs" />
+    <Compile Include="Izmena\EtiketaIzmena.xaml.cs">
+      <DependentUpon>EtiketaIzmena.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Izmena\SpomenikIzmena.xaml.cs">
+      <DependentUpon>SpomenikIzmena.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Izmena\TipIzmena.xaml.cs">
+      <DependentUpon>TipIzmena.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Klase\Korisnik.cs" />
+    <Compile Include="Klase\ListaEtiketa.cs" />
+    <Compile Include="Klase\Spomenici.cs" />
+    <Compile Include="Logging.xaml.cs">
+      <DependentUpon>Logging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mnemonic.cs" />
+    <Compile Include="MyImage.cs" />
+    <Compile Include="Prozori\DodajEtiketu.xaml.cs">
+      <DependentUpon>DodajEtiketu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\DodajSpomenik.xaml.cs">
+      <DependentUpon>DodajSpomenik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\DodajTip.xaml.cs">
+      <DependentUpon>DodajTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\Mapa.xaml.cs">
+      <DependentUpon>Mapa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\PregledSpomenik.xaml.cs">
+      <DependentUpon>PregledSpomenik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\PregledSpomenika.xaml.cs">
+      <DependentUpon>PregledSpomenika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\Pretraga.xaml.cs">
+      <DependentUpon>Pretraga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prozori\Registracija.xaml.cs">
+      <DependentUpon>Registracija.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationRules.cs" />
+    <Page Include="HelpSystem\HelpViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Izmena\EtiketaIzmena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Izmena\SpomenikIzmena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Izmena\TipIzmena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Logging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Klase\Etiketa.cs" />
+    <Compile Include="Klase\Spomenik.cs" />
+    <Compile Include="Klase\Tip.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Prozori\DodajEtiketu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\DodajSpomenik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\DodajTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\Mapa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\PregledSpomenik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\PregledSpomenika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\Pretraga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prozori\Registracija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WhistlerBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="karta.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="patern.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pozadina.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Prozori\mapa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="folder.png" />
+    <Resource Include="foldero.png" />
+    <Resource Include="HelpSystem\logovanje.jpg" />
+    <Resource Include="HelpSystem\pocetna.jpg" />
+    <Resource Include="HelpSystem\dodavanjenove.jpg" />
+    <Resource Include="HelpSystem\izmenaspomenik.jpg" />
+    <Resource Include="HelpSystem\drag&amp;drop.jpg" />
+    <Resource Include="HelpSystem\etiketa.jpg" />
+    <Resource Include="HelpSystem\etiketaizmena.jpg" />
+    <Content Include="HelpSystem\Pomoc.htm" />
+    <Resource Include="HelpSystem\registracija.jpg" />
+    <Resource Include="HelpSystem\pregled.jpg" />
+    <Resource Include="HelpSystem\tip.jpg" />
+    <Resource Include="HelpSystem\tipizmena.jpg" />
+    <Content Include="NapredneKontrole.sln" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

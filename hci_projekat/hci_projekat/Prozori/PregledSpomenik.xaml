@@ -1,0 +1,241 @@
+﻿<Window x:Class="hci_projekat.Prozori.PregledSpomenik"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:hci_projekat.Prozori"
+      xmlns:list="clr-namespace:hci_projekat.Klase"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:cmd="clr-namespace:hci_projekat"
+      mc:Ignorable="d" 
+      d:DesignHeight="754" d:DesignWidth="1102"
+      Title="PregledSpomenik" Height="754" Width="1102" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="cmd:Mnemonic.DelS" CanExecute="DelS_CanExecute" Executed="DelS_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:Mnemonic.DelT" CanExecute="DelT_CanExecute" Executed="DelT_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:Mnemonic.DelE" CanExecute="DelE_CanExecute" Executed="DelE_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    <DockPanel Width="1102" Height="754" Background="White">
+        <TabControl DockPanel.Dock="Top" HorizontalAlignment="Center" Height="752" Width="1102" VerticalAlignment="Top" Margin="0,0,0.4,0"  >
+            <TabItem Header="Spomenici" >
+                <DockPanel Height="654" Width="1102" Background="White">
+
+                    <Grid DockPanel.Dock="Top" Background="LightBlue" VerticalAlignment="Top" Height="281" Margin="0,0,0.4,0" >
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Odaberi filter:" FontSize="15" Height="30" Width="150" Margin="147,20,805,231"></TextBlock>
+                        <ComboBox Height="30" SelectedItem="{Binding Path= selektovano}" SelectionChanged="ComboBox_SelectionChanged" Margin="274,20,630,231">
+                            <ComboBoxItem>Oznaka</ComboBoxItem>
+                            <ComboBoxItem>Naziv</ComboBoxItem>
+                            <ComboBoxItem>Tip</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox  Visibility="{Binding vidljivostOznaka, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=Oznaka}" Name="FilterOznaka" TextChanged="oznakaChanged" Height="30" Width="180" Margin="514,19,408,232"></TextBox>
+                        <TextBox  Visibility="{Binding vidljivostNaziv, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=Naziv}" TextChanged="nazivChanged" Name="FilterNaziv" Height="30" Width="180" Margin="514,19,408,232"></TextBox>
+                        <ComboBox  Visibility="{Binding  vidljivostTip, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=nazivTipa}" ItemsSource="{Binding tipoviFilter}" SelectedItem="{Binding Path= selektovanTip}" SelectionChanged="tipChanged" Height="30" Width="180" Margin="514,19,408,232"></ComboBox>
+                        <Button Click="PretragaProzor" FontSize="15" Width="120" Height="35" Margin="802,20,180,226" FontWeight="Medium">Pretraga</Button>
+                        <Button Click="ponistavanje" FontSize="15" Height="35" FontWeight="Medium" Width="120" Margin="937,20,45,226">Poništi pretragu</Button>
+                        <DataGrid Margin="30,0,30,30" x:Name="gridS" ItemsSource="{Binding Path= spomenici}" IsReadOnly="True" VerticalAlignment="Bottom" AutoGenerateColumns="False" Height="165">
+                            <DataGrid.CommandBindings>
+                                <CommandBinding Command="cmd:Mnemonic.DelS" CanExecute="DelS_CanExecute" Executed="DelS_Executed">
+                                </CommandBinding>
+                            </DataGrid.CommandBindings>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Oznaka" Binding="{Binding Path= oznakaSpomenik}" Width="90"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv"  Binding="{ Binding Path= nazivSpomenik}" Width="155"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Turistički status" Binding="{Binding Path=turistickiStatus}" Width="150"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Godišnji prihod" Binding="{Binding Path=godisnjiPrihod}" Width="200"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid DataContext="{Binding ElementName=gridS, Path=SelectedItem}" IsEnabled="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" DockPanel.Dock="Bottom"  Height="433" Margin="0,0,0.4,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="55"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="15" FontWeight="Medium" Text="Oznaka:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Grid.Column="1" Background="#f0f5f5" FontStyle="Italic" Grid.Row="0"  Height="30" Width="130"  FontSize="15" FontWeight="Medium" Text="{Binding Path=oznakaSpomenik}"></TextBlock>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="15" FontWeight="Medium" Text="Naziv:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontStyle="Italic" FontSize="15" Height="30" Width="130" Background="#f0f5f5" Text="{Binding Path=nazivSpomenik}"></TextBlock>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="15" FontWeight="Medium" Text="Opis" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontStyle="Italic" FontSize="15" Height="60" Width="130" Background="#f0f5f5" Text="{Binding Path=opisSpomenik}"></TextBlock>
+
+                        <TextBlock FontWeight="Medium"  Grid.Column="0" Grid.Row="3" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Ekološki "/><LineBreak/><Run Text="ugrožen:"/></TextBlock>
+                        <CheckBox FontWeight="Medium" IsEnabled="False" IsChecked="{Binding Path= ekoloskiUgrozen}" BorderThickness="5" Content="Da" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="checkBox1"/>
+
+
+                        <TextBlock FontWeight="Medium"  Grid.Column="0" Grid.Row="4" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Stanište "/><LineBreak/><Run Text="ugroženih vrsta:"/></TextBlock>
+                        <CheckBox FontWeight="Medium" IsEnabled="False" IsChecked="{Binding stanisteUV}" BorderThickness="5" Content="Da" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="checkBox2"/>
+
+
+                        <TextBlock FontWeight="Medium"  Grid.Column="0" Grid.Row="5" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Naseljen"/><LineBreak/><Run Text="region:"/></TextBlock>
+                        <CheckBox FontWeight="Medium" IsEnabled="False"  IsChecked="{Binding naseljenRegion}" BorderThickness="5" Content="Da" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="checkBox3"/>
+
+                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="0" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Tip:</TextBlock>
+                        <TextBlock Text="{Binding Path=tipSpomenik}" FontSize="15" FontStyle="Italic" FontWeight="Medium" Background="#f0f5f5" Grid.Column="3" Grid.Row="0" Height="30" Width="130"></TextBlock>
+
+                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Klima:</TextBlock>
+                        <TextBlock Text="{Binding Path=klima}" FontSize="15" FontStyle="Italic" FontWeight="Medium" Background="#f0f5f5" Grid.Column="3" Grid.Row="1" Height="30" Width="130"></TextBlock>
+
+                        <TextBlock FontWeight="Medium"  Grid.Column="2" Grid.Row="2" FontSize="15" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Turistički"/><LineBreak/><Run Text="status:"></Run></TextBlock>
+                        <TextBlock Text="{Binding Path=turistickiStatus}" FontSize="15" FontStyle="Italic" FontWeight="Medium" Background="#f0f5f5" Grid.Column="3" Grid.Row="2" Height="30" Width="130"></TextBlock>
+
+                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="3" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Godišnji"/><LineBreak/><Run Text="prihod:"></Run></TextBlock>
+                        <TextBlock Text="{Binding Path=godisnjiPrihod}" FontSize="15" FontStyle="Italic" FontWeight="Medium" Background="#f0f5f5" Grid.Column="3" Grid.Row="3" Height="30" Width="130"></TextBlock>
+
+                        <TextBlock FontWeight="Medium" Grid.Column="2" Grid.Row="4" FontSize="15" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Etikete:</TextBlock>
+                        <ListBox BorderThickness="3" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" Name="listViewEtiketeD" Width="100" SelectionMode="Single" ItemsSource="{Binding Path= etikete}" Margin="9.6,10.4,10.4,12.2">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <ListBoxItem >
+                                        <TextBox Name="etik"  Text="{Binding Path=oznakaEtikete}"></TextBox>
+                                    </ListBoxItem>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock FontWeight="Medium" Grid.Column="4" Grid.Row="0" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,11,83.2,13.8" Width="64">Ikonica:</TextBlock>
+                        <Border BorderBrush="LightSteelBlue" Grid.Row="0" Grid.Column="4" BorderThickness="2" Width="112" Height="112" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="border1" >
+                            <Image Name="slikaSpomenika" Source="{Binding Path=spomenikpath}" Height="110" Width="110"/>
+                        </Border>
+
+                        <TextBlock FontWeight="Medium"  Grid.Column="4" Grid.Row="3" FontSize="15" Margin="0,0,80,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="74" RenderTransformOrigin="0.208,0.55"><Run Text="Datum:"/><LineBreak/><Run Text="otkrivanja:"></Run></TextBlock>
+                        <TextBlock Background="#f0f5f5" Height="30" FontSize="15" Grid.Column="4" Grid.Row="3" FontStyle="Italic" FontWeight="Medium" Text="{Binding Path=datumOtkrivanja}" RenderTransformOrigin="0.061,0.444" Grid.ColumnSpan="2" Margin="164.4,13"/>
+
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Grid.Column="4" Grid.Row="5" Margin="0,0,-200,0" Click="Izmena">Izmeni</Button>
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Grid.Column="5" Grid.Row="5" Click="Button_Click">Obriši</Button>
+                    </Grid>
+
+                </DockPanel>
+            </TabItem>
+            <TabItem  Header="Tipovi"  Margin="-0.2,0,0,0" Width="52">
+                <DockPanel Height="654" Width="1102" Background="White">
+                    <Grid DockPanel.Dock="Top" Background="LightBlue" VerticalAlignment="Top" Height="281" Margin="0,0,0.4,0" >
+                        <DataGrid Margin="30,0,30,30" Height="165" VerticalAlignment="Bottom" x:Name="gridT" ItemsSource="{Binding Path = tipovi2}" IsReadOnly="True" AutoGenerateColumns="False">
+                            <DataGrid.CommandBindings>
+                                <CommandBinding Command="cmd:Mnemonic.DelT" CanExecute="DelT_CanExecute" Executed="DelT_Executed">
+                                </CommandBinding>
+                            </DataGrid.CommandBindings>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Oznaka" Binding="{Binding oznakaTipa}" Width="90"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv"  Binding="{Binding nazivTipa}" Width="155"></DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid DataContext="{Binding ElementName=gridT, Path=SelectedItem}" IsEnabled="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" DockPanel.Dock="Bottom"  Height="433" Margin="0,0,0.4,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="85"/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="55"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="15" FontWeight="Medium" Text="Oznaka:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Grid.Column="2" Background="#f0f5f5" FontStyle="Italic" Grid.Row="1"  Height="30" Width="130"  FontSize="15" FontWeight="Medium" Text="{Binding Path=oznakaTipa}"></TextBlock>
+
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="15" FontWeight="Medium" Text="Naziv:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="2" FontStyle="Italic" FontSize="15" Height="30" Width="130" Background="#f0f5f5" Text="{Binding Path=nazivTipa}"></TextBlock>
+
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="Opis:" FontSize="15" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Background="#f0f5f5" Grid.Column="2" Grid.Row="3" Height="60" Width="130" FontStyle="Italic" FontWeight="Medium" Text="{Binding Path=opisTipa}"></TextBlock>
+
+                        <TextBlock FontWeight="Medium" Grid.Column="3" Grid.Row="1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0" Width="64">Ikonica:</TextBlock>
+                        <Border BorderBrush="LightSteelBlue" Grid.Row="1" Grid.Column="3" BorderThickness="2" Width="112" Height="112"  Grid.ColumnSpan="2" Grid.RowSpan="3" Name="imageborder" >
+                            <Image Name="path" Source="{Binding Path=path}" Height="110" Width="110"/>
+                        </Border>
+
+
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Grid.Column="4" Grid.Row="5" Margin="0,15,-170,-8" Click="izmenatip">Izmeni</Button>
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Grid.Column="5" Grid.Row="5" Margin="0,15,0,-8" Click="Button_Click">Obriši</Button>
+                    </Grid>
+
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Etikete" Height="28" Margin="-0.2,0,0.2,0" VerticalAlignment="Top" >
+                <DockPanel Height="654" Width="1102" Background="White">
+
+                    <Grid DockPanel.Dock="Top" Background="LightBlue" VerticalAlignment="Top" Height="281" Margin="0,0,0.4,0" >
+                        <TextBlock Text="Odaberi filter:" FontSize="15" Height="30" Width="150" Margin="108,29,844,222"></TextBlock>
+                        <DataGrid Margin="30,0,30,30" VerticalAlignment="Bottom" Height="165" x:Name="gridE" ItemsSource="{Binding etikete}" IsReadOnly="True" AutoGenerateColumns="False">
+                            <DataGrid.CommandBindings>
+                                <CommandBinding Command="cmd:Mnemonic.DelE" CanExecute="DelE_CanExecute" Executed="DelE_Executed">
+                                </CommandBinding>
+                            </DataGrid.CommandBindings>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Oznaka" Binding="{Binding oznakaEtikete}" Width="90"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Boja" Binding="{Binding eBoja}" Width="80"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Opis" Binding="{Binding opisEtikete}" Width="200"></DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid DataContext="{Binding ElementName=gridE, Path=SelectedItem}" IsEnabled="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" DockPanel.Dock="Bottom"  Height="433" Margin="0,0,0.4,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="85"/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="55"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="1" Grid.Column="2" FontSize="15" FontWeight="Medium" Text="Oznaka:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock  Grid.Column="3" Background="#f0f5f5" FontStyle="Italic" Grid.Row="1"  Height="30" Width="130"  FontSize="15" FontWeight="Medium" Text="{Binding Path=oznakaEtikete}"></TextBlock>
+
+                        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="15" FontWeight="Medium" Text="Boja:" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <xctk:ColorPicker Name="cBoja" IsEnabled="False" SelectedColor="{Binding Path=eBoja}" Grid.Row="2" Width="130" Height="35" Grid.Column="3"></xctk:ColorPicker>
+
+
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="Opis:" FontSize="15" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Background="#f0f5f5" Grid.Column="3" Grid.Row="3" Height="60" Width="130" FontStyle="Italic" FontWeight="Medium" Text="{Binding Path=opisEtikete}"></TextBlock>
+
+
+
+
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Grid.Column="4" Grid.Row="5" Margin="0,15,-170,-8" Click="izmenaetiketa">Izmeni</Button>
+                        <Button FontSize="15" FontWeight="Medium" Height="35" Width="100" Grid.Column="5" Grid.Row="5" Margin="0,15,0,-8" Click="Button_Click">Obriši</Button>
+
+                    </Grid>
+
+                </DockPanel>
+            </TabItem>
+
+        </TabControl>
+
+    </DockPanel>
+</Window>
